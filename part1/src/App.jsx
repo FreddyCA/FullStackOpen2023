@@ -1,5 +1,6 @@
 import Content from "./components/Content/Content"
 import Header from "./components/Header/Header"
+import Total from "./components/Total/Total"
 
 const App = () => {
   const course = {
@@ -20,13 +21,6 @@ const App = () => {
     ]
   }
 
-  const exercisesCounts = course.parts.map(value => value.exercises)
-
-  let sum = 0;
-  exercisesCounts.forEach((value) => {
-    sum += value
-  })
-
   return (
     <div>
     
@@ -34,7 +28,7 @@ const App = () => {
 
       <Content parts={course.parts} />
 
-      <p>Number of exercises {sum}</p>
+      <Total courseParts={course.parts}/>
     </div>
   )
 }
