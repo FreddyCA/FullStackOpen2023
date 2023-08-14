@@ -9,12 +9,18 @@ const Characteristics = ({variable, name}) => {
 }
 
 const Statistics = ({good, neutral, bad, name}) => {
+    const all = good + neutral + bad
+    const average = (good - bad) / all
+    const positive = (good / all) * 100
 
     return <div>
         <TitleStatistics />
         <Characteristics variable ={good} name={name.good} />
         <Characteristics variable ={neutral} name={name.neutral} />
         <Characteristics variable ={bad} name={name.bad} />
+        <Characteristics variable={all} name="all"/>
+        <Characteristics variable={isNaN(average) ? 0 : average} name="average"/>
+        <Characteristics variable={isNaN(positive) ? 0 : positive} name="positive"/>
     </div>
 }
 
