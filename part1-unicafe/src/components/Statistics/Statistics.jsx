@@ -1,15 +1,8 @@
 import PropTypes from "prop-types";
+import StatisticLine from "../StatisticLine/StatisticLine";
 
 const TitleStatistics = () => {
   return <h2>statistics</h2>;
-};
-
-const Characteristics = ({ variable, name, percentage }) => {
-  return (
-    <p>
-      {name}: {percentage ? variable + " %" : variable}
-    </p>
-  );
 };
 
 const Statistics = ({ good, neutral, bad, name }) => {
@@ -24,18 +17,18 @@ const Statistics = ({ good, neutral, bad, name }) => {
         <p>No feedback given</p>
       ) : (
         <div>
-          <Characteristics name={name.good} variable={good} />
-          <Characteristics name={name.neutral} variable={neutral} />
-          <Characteristics name={name.bad} variable={bad} />
-          <Characteristics 
+          <StatisticLine name={name.good} variable={good} />
+          <StatisticLine name={name.neutral} variable={neutral} />
+          <StatisticLine name={name.bad} variable={bad} />
+          <StatisticLine 
             name="all" 
             variable={all} 
           />
-          <Characteristics
+          <StatisticLine
             name="average"
             variable={isNaN(average) ? 0 : average}
           />
-          <Characteristics
+          <StatisticLine
             name="positive"
             variable={isNaN(positive) ? 0 : positive}
             percentage={true}
@@ -51,12 +44,6 @@ Statistics.propTypes = {
   neutral: PropTypes.number,
   bad: PropTypes.number,
   name: PropTypes.object.isRequired,
-};
-
-Characteristics.propTypes = {
-  variable: PropTypes.number,
-  name: PropTypes.string,
-  percentage: PropTypes.bool,
 };
 
 export default Statistics;
