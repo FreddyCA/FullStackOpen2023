@@ -7,7 +7,7 @@ const TitleStatistics = () => {
 const Characteristics = ({ variable, name, percentage }) => {
   return (
     <p>
-      {name}: {percentage ? variable + " %" : variable} 
+      {name}: {percentage ? variable + " %" : variable}
     </p>
   );
 };
@@ -20,12 +20,28 @@ const Statistics = ({ good, neutral, bad, name }) => {
   return (
     <div>
       <TitleStatistics />
-      <Characteristics name={name.good} variable={good} />
-      <Characteristics name={name.neutral} variable={neutral} />
-      <Characteristics name={name.bad} variable={bad} />
-      <Characteristics name="all" variable={all} />
-      <Characteristics name="average" variable={isNaN(average) ? 0 : average} />
-      <Characteristics name="positive" variable={isNaN(positive) ? 0 : positive} percentage={true} />
+      { all == 0 ? (
+        <p>No feedback given</p>
+      ) : (
+        <div>
+          <Characteristics name={name.good} variable={good} />
+          <Characteristics name={name.neutral} variable={neutral} />
+          <Characteristics name={name.bad} variable={bad} />
+          <Characteristics 
+            name="all" 
+            variable={all} 
+          />
+          <Characteristics
+            name="average"
+            variable={isNaN(average) ? 0 : average}
+          />
+          <Characteristics
+            name="positive"
+            variable={isNaN(positive) ? 0 : positive}
+            percentage={true}
+          />
+        </div>
+      )}
     </div>
   );
 };
