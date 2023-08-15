@@ -2,9 +2,10 @@ import PropTypes from "prop-types";
 
 const StatisticLine = ({ variable, name, percentage }) => {
   return (
-    <p>
-      {name}: {percentage ? variable + " %" : variable}
-    </p>
+    <tr>
+      <td>{name}</td>
+      <td>{percentage ? variable + " %" : variable}</td>
+    </tr>
   );
 };
 

@@ -7,8 +7,8 @@ const TitleStatistics = () => {
 
 const Statistics = ({ good, neutral, bad, name }) => {
   const all = good + neutral + bad;
-  const average = (good - bad) / all;
-  const positive = (good / all) * 100;
+  const average = parseFloat(((good - bad) / all).toFixed(1));
+  const positive = parseFloat(((good / all) * 100).toFixed(1));
 
   return (
     <div>
@@ -16,24 +16,26 @@ const Statistics = ({ good, neutral, bad, name }) => {
       { all == 0 ? (
         <p>No feedback given</p>
       ) : (
-        <div>
-          <StatisticLine name={name.good} variable={good} />
-          <StatisticLine name={name.neutral} variable={neutral} />
-          <StatisticLine name={name.bad} variable={bad} />
-          <StatisticLine 
-            name="all" 
-            variable={all} 
-          />
-          <StatisticLine
-            name="average"
-            variable={isNaN(average) ? 0 : average}
-          />
-          <StatisticLine
-            name="positive"
-            variable={isNaN(positive) ? 0 : positive}
-            percentage={true}
-          />
-        </div>
+        <table>
+            <tbody>
+                <StatisticLine name={name.good} variable={good} />
+                <StatisticLine name={name.neutral} variable={neutral} />
+                <StatisticLine name={name.bad} variable={bad} />
+                <StatisticLine 
+                    name="all" 
+                    variable={all} 
+                />
+                <StatisticLine
+                    name="average"
+                    variable={isNaN(average) ? 0 : average}
+                />
+                <StatisticLine
+                    name="positive"
+                    variable={isNaN(positive) ? 0 : positive}
+                    percentage={true}
+                />
+            </tbody>
+        </table>
       )}
     </div>
   );
