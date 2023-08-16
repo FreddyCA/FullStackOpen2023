@@ -12,20 +12,27 @@ const App = () => {
 
   const [selected, setSelected] = useState(0);
 
+  const [points, setPoints] = useState(Array(6).fill(0))
+
   const changeAnecdote = (selected) => {
     let randomIndex;
-  
     do {
       randomIndex = Math.floor(Math.random() * anecdotes.length);
     } while (randomIndex === selected);
-  
     setSelected(randomIndex);
   };
 
-  
+  const likeAnecdote = (selected) => {
+    const copyPoints = [...points]
+    copyPoints[selected]++
+    setPoints(copyPoints)
+  };
+
   return (
     <div>
       <p>{anecdotes[selected]}</p>
+      <p>has {points[selected]} votes</p>
+      <button onClick={() => likeAnecdote(selected)}>vote</button>
       <button onClick={() => changeAnecdote(selected)}>next anecdote</button>
     </div>
   );
