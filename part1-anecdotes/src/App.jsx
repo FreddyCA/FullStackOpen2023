@@ -12,7 +12,9 @@ const App = () => {
 
   const [selected, setSelected] = useState(0);
 
-  const [points, setPoints] = useState(Array(6).fill(0))
+  const [points, setPoints] = useState(Array(6).fill(0));
+
+  const [maxPoint, setMaxPoint] = useState([false, 0]);
 
   const changeAnecdote = (selected) => {
     let randomIndex;
@@ -23,17 +25,45 @@ const App = () => {
   };
 
   const likeAnecdote = (selected) => {
-    const copyPoints = [...points]
-    copyPoints[selected]++
-    setPoints(copyPoints)
+    const copyPoints = [...points];
+    copyPoints[selected]++;
+    setPoints(copyPoints);
+    mostAnecdote(copyPoints);
+  };
+
+  const mostAnecdote = (copyPoints) => {
+    let max = copyPoints[0];
+    let indexMax = 0;
+    copyPoints.forEach((element, index) => {
+      if (element > max) {
+        max = element;
+        indexMax = index;
+      }
+    });
+
+    if (max > 0) {
+      const maxPointIndex = [...maxPoint];
+      maxPointIndex[0] = true;
+      maxPointIndex[1] = indexMax;
+      setMaxPoint(maxPointIndex);
+    }
   };
 
   return (
     <div>
+      <h3>Anecdote of the day</h3>
       <p>{anecdotes[selected]}</p>
       <p>has {points[selected]} votes</p>
       <button onClick={() => likeAnecdote(selected)}>vote</button>
       <button onClick={() => changeAnecdote(selected)}>next anecdote</button>
+
+      {maxPoint[0] && (
+        <>
+          <h3>Anecdote whit most votes</h3>
+          <p>{anecdotes[maxPoint[1]]}</p>
+          <p>has {points[maxPoint[1]]} votes</p>
+        </>
+      )}
     </div>
   );
 };
