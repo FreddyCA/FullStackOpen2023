@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import Part from "./Part/Part";
+import Total from "./Total/Total";
 
 const Content = ({ parts }) => {
   return (
@@ -13,6 +14,7 @@ const Content = ({ parts }) => {
           ></Part>
         );
       })}
+      <Total parts={parts}></Total>
     </div>
   );
 };
