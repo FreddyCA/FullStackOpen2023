@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 
 const Total = ({parts}) => {
-    let total = 0
-    parts.forEach(element => {
-        total += element.exercises
-    })
-    return<p><b>total of {total} exercises</b></p>
+    const sum = parts.reduce((acumulator, part) => {
+        return acumulator + part.exercises
+    }, 0);
+
+    return<p><b>total of {sum} exercises</b></p>
 }
 
 Total.propTypes = {
