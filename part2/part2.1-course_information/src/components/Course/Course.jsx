@@ -2,16 +2,20 @@ import PropTypes from "prop-types";
 import Header from "./Header/Header";
 import Content from "./Content/Content";
 
-const Course = ({ course }) => {
+const Course = ({ courses }) => {
   return (
     <div>
-      <Header name={course.name}></Header>
-      <Content parts={course.parts}></Content>
+      {courses.map((course) => (
+        <div key={course.id}>
+          <Header name={course.name}></Header>
+          <Content parts={course.parts}></Content>
+        </div>
+      ))}
     </div>
   );
 };
 
 Course.propTypes = {
-  course: PropTypes.object,
+  courses: PropTypes.array,
 };
 export default Course;
