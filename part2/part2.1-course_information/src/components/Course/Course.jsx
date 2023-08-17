@@ -7,8 +7,8 @@ const Course = ({ courses }) => {
     <div>
       {courses.map((course) => (
         <div key={course.id}>
-          <Header name={course.name}></Header>
-          <Content parts={course.parts}></Content>
+          <Header name={course.name} />
+          <Content parts={course.parts} />
         </div>
       ))}
     </div>

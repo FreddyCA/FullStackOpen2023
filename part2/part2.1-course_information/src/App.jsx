@@ -1,4 +1,5 @@
 import Course from "./components/Course/Course";
+import TitleGeneral from "./components/TitleGeneral/TitleGeneral";
 
 const App = () => {
   const courses = [
@@ -48,8 +49,8 @@ const App = () => {
 
   return (
     <>
-      <h1>Web development curriculum</h1>
-      <Course courses={courses}></Course>
+      <TitleGeneral />
+      <Course courses={courses} />
     </>
   );
 };

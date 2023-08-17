@@ -14,7 +14,7 @@ const Content = ({ parts }) => {
           ></Part>
         );
       })}
-      <Total parts={parts}></Total>
+      <Total parts={parts} />
     </div>
   );
 };
